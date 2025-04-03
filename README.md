@@ -8,3 +8,5 @@ Aós conclusão, vamos escrever aqui a documentação do projeto:
 - Bibliotecas utilizadas
 - Funções utilizadas
 - Tipo do projeto (Interaçao via terminal, aplicativo, etc)
+
+OBS: Ao fazer push de código, postar nas branches certas
