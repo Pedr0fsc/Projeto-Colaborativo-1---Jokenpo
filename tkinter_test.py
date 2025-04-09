@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 from random import randint
 
 window = tk.Tk()
+window.title("Jokenpo")
 window.minsize(500, 400)
 
 frm = ttk.Frame(window, padding=30)
