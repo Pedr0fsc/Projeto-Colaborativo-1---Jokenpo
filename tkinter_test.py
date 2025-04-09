@@ -5,20 +5,34 @@ from random import randint
 window = tk.Tk()
 window.title("Jokenpo")
 window.minsize(500, 400)
-
-frm = ttk.Frame(window, padding=30)
-frm.grid()
+window.configure(bg="#ffffff")
 
 playerSelection = tk.StringVar()
+computerSelection = tk.StringVar()
 result = tk.StringVar()
 
 gameOptions = ["pedra", "papel", "tesoura"]
 resultOptions = ["Vitória", "Derrota", "Empate"]
 
+title = tk.Label(window, text="Jogo: Pedra, Papel e Tesoura", font=("Arial", 18, "bold"), bg="#f0f0f0")
+title.pack(pady=10)
+
+label_computer = tk.Label(window, textvariable=computerSelection, font=("Arial", 14), bg="#f0f0f0")
+label_computer.pack(pady=5)
+
+label_result = tk.Label(window, textvariable=result, font=("Arial", 20, "bold"), bg="white", width=20)
+label_result.pack(pady=20)
+
+frm = ttk.Frame(window, padding=30)
+frm.pack()
+
+frame_buttons = tk.Frame(window, bg="#f0f0f0")
+frame_buttons.pack(pady=10)
+
 def Play(choice):
     playerSelection.set(choice)
-    computerChoice = randint(0, 2)
-    computer = gameOptions[computerChoice]
+    computer = gameOptions[randint(0, 2)]
+    computerSelection.set = (f"Computador escolheu: {computer}")
     player = choice
 
     if computer == player:
@@ -30,11 +44,12 @@ def Play(choice):
     else:
         result.set(resultOptions[1])
 
-lbl = tk.Label(window, textvariable=result, fg="black", bg="white", font=("Arial", 20))
-lbl.grid(row=3, column=2)
-
-btn_opcoes = tk.Button(text="Pedra", fg="white", bg="gray", width=10, height=5, padx=5, pady=5, command=lambda: Play(gameOptions[0])).grid(row=1, column=1)
-btn_opcoes = tk.Button(text="Papel", fg="white", bg="gray", width=10, height=5, padx=5, pady=5, command=lambda: Play(gameOptions[1])).grid(row=1, column=2)
-btn_opcoes = tk.Button(text="Tesoura", fg="white", bg="gray", width=10, height=5, padx=5, pady=5, command=lambda: Play(gameOptions[2])).grid(row=1, column=3)
+for nome in gameOptions:
+    btn = tk.Button(
+        frame_buttons, text=nome.capitalize(), width=10, height=2,
+        bg="#666", fg="white", font=("Arial", 12),
+        command=lambda n=nome: Play(n)
+    )
+    btn.pack(side="left", padx=10)
 
 window.mainloop()
